@@ -9,15 +9,18 @@
     register: user_list
     delegate_to: localhost
 
-
+# TODO: remove, just for development
   - name: display user_list data
+    when: 0 > 1 # disabled
     debug:
       var: user_list.list
 
   - name: extract Username from all dictionaries
+    when: 0 > 1 # disabled
     debug:
       msg: "username: {{ item.username }}"
     loop: "{{ user_list.list }}"
+# TODO: remove, just for development - END
   
   - name: create users from csv
     ansible.builtin.user:
