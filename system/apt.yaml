@@ -1,7 +1,13 @@
 - name: "apt setup"
   hosts: all
   tasks:
-  - name: "apt"
+  - name: Update all Debian/Ubuntu packages to their latest version
+    # reference: https://www.cyberciti.biz/faq/ansible-apt-update-all-packages-on-ubuntu-debian-linux/
+    ansible.builtin.apt:
+      name: "*"
+      state: latest
+
+  - name: "install new apt packages"
     ansible.builtin.apt:
       update_cache: "yes"
       name: "{{ item }}"
