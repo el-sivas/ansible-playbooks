@@ -1,11 +1,12 @@
-# reference: https://www.redhat.com/sysadmin/ansible-create-users-csv
 - name: create users from csv file
+  # reference: https://www.redhat.com/sysadmin/ansible-create-users-csv
   hosts: all
   tasks:
   - name: reading the csv file
     read_csv:
       path: "{{ user_list_file }}"
       delimiter: ';'
+  
     register: user_list
     delegate_to: localhost
 
@@ -25,9 +26,10 @@
   - name: create users from csv
     ansible.builtin.user:
       name: "{{ item.username }}"
+      uid: "{{ item.uid }}"
       shell: /bin/bash
       groups: "{{ item.groups }}"
       append: yes
-      state: present
+      state: "{{ item.state }}"
     loop: "{{ user_list.list }}"
 
