@@ -1,0 +1,10 @@
+- name: "Connection Test"
+  hosts: "all"
+  gather_facts: "no"
+  tasks:
+    - name: "Ping"
+      ping:
+      register: "ping_result"
+    - name: "Print Ping Result"
+      debug:
+        msg: "{{ ping_result }}"
