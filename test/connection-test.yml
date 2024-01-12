@@ -7,4 +7,4 @@
       register: "ping_result"
     - name: "Print Ping Result"
       debug:
-        msg: "{{ ping_result }}
+        msg: "{{ ping_result }}"
