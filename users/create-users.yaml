@@ -28,7 +28,7 @@
       name: "{{ item.username }}"
       uid: "{{ item.uid }}"
       shell: /bin/bash
-      groups: "{{ item.groups }}"
+      groups: "{{ item.desktop_groups.split(',') }}"
       append: yes
       state: "{{ item.state }}"
     loop: "{{ user_list.list }}"
