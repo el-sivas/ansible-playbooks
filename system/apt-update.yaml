@@ -1,8 +1,12 @@
 - name: "apt setup"
+  # reference: https://www.cyberciti.biz/faq/ansible-apt-update-all-packages-on-ubuntu-debian-linux/
   hosts: all
   tasks:
+  - name: Update apt cache
+    ansible.builtin.apt:
+      update_cache: yes
+      cache_valid_time: 3600
   - name: Update all Debian/Ubuntu packages to their latest version
-    # reference: https://www.cyberciti.biz/faq/ansible-apt-update-all-packages-on-ubuntu-debian-linux/
     ansible.builtin.apt:
       name: "*"
       state: latest
